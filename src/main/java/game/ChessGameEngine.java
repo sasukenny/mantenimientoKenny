@@ -1,3 +1,4 @@
+package game;
 import java.util.ArrayList;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -113,7 +114,7 @@ public class ChessGameEngine{
         }
         if ( currentPlayer == 2 ) // black player
         {
-            if ( currentPiece.getColorOfPiece() == ChessGamePiece.BLACK ){
+            if ( currentPiece.getColorOfPiece() == PieceColorEnum.BLACK ){
                 return true;
             }
             return false;
@@ -121,7 +122,7 @@ public class ChessGameEngine{
         else
         // white player
         {
-            if ( currentPiece.getColorOfPiece() == ChessGamePiece.WHITE ){
+            if ( currentPiece.getColorOfPiece() == PieceColorEnum.WHITE ){
                 return true;
             }
             return false;
@@ -167,7 +168,6 @@ public class ChessGameEngine{
         else
         {
             board.resetBoard( false );
-            // System.exit(0);
         }
     }
     /**

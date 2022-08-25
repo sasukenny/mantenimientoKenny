@@ -1,5 +1,5 @@
+package game;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 // -------------------------------------------------------------------------
 /**
  * Class to represent the Bishop piece.
@@ -22,7 +22,7 @@ public class Bishop extends ChessGamePiece{
 	 * @param color
 	 *			either GamePiece.WHITE, BLACK, or UNASSIGNED
 	 */
-	public Bishop( ChessGameBoard board, int row, int col, int color ){
+	public Bishop( ChessGameBoard board, int row, int col, PieceColorEnum color ){
 		super( board, row, col, color );
 	}
 	/**
@@ -39,7 +39,7 @@ public class Bishop extends ChessGamePiece{
 		ArrayList<String> northWestMoves = calculateNorthWestMoves( board, 8 );
 		ArrayList<String> southEastMoves = calculateSouthEastMoves( board, 8 );
 		ArrayList<String> southWestMoves = calculateSouthWestMoves( board, 8 );
-		ArrayList<String> allMoves = new ArrayList<String>();
+		ArrayList<String> allMoves = new ArrayList<>();
 		allMoves.addAll( northEastMoves );
 		allMoves.addAll( northWestMoves );
 		allMoves.addAll( southEastMoves );
@@ -51,22 +51,5 @@ public class Bishop extends ChessGamePiece{
 	 * 
 	 * @return ImageIcon the ImageIcon representation of this piece.
 	 */
-	@Override
-	public ImageIcon createImageByPieceType(){
-		if ( getColorOfPiece() == ChessGamePiece.WHITE ){
-			return new ImageIcon(
-				getClass().getResource("chessImages/WhiteBishop.gif")
-			);			
-		}
-		else if ( getColorOfPiece() == ChessGamePiece.BLACK ){
-			return new ImageIcon(
-				getClass().getResource("chessImages/BlackBishop.gif")
-			);
-		}
-		else{
-			return new ImageIcon(
-				getClass().getResource("chessImages/BlackBishop.gif")
-			);
-		}
-	}
+
 }

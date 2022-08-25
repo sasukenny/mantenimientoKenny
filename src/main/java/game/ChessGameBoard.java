@@ -1,3 +1,4 @@
+package game;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -74,12 +75,12 @@ public class ChessGameBoard extends JPanel{
      * @return ArrayList<GamePiece> the pieces
      */
     public ArrayList<ChessGamePiece> getAllWhitePieces(){
-        ArrayList<ChessGamePiece> whitePieces = new ArrayList<ChessGamePiece>();
+        ArrayList<ChessGamePiece> whitePieces = new ArrayList<>();
         for ( int i = 0; i < 8; i++ ){
             for ( int j = 0; j < 8; j++ ){
                 if ( chessCells[i][j].getPieceOnSquare() != null
                     && chessCells[i][j].getPieceOnSquare().getColorOfPiece() ==
-                        ChessGamePiece.WHITE ){
+                    		PieceColorEnum.WHITE ){
                     whitePieces.add( chessCells[i][j].getPieceOnSquare() );
                 }
             }
@@ -93,12 +94,12 @@ public class ChessGameBoard extends JPanel{
      * @return ArrayList<GamePiece> the pieces
      */
     public ArrayList<ChessGamePiece> getAllBlackPieces(){
-        ArrayList<ChessGamePiece> blackPieces = new ArrayList<ChessGamePiece>();
+        ArrayList<ChessGamePiece> blackPieces = new ArrayList<>();
         for ( int i = 0; i < 8; i++ ){
             for ( int j = 0; j < 8; j++ ){
                 if ( chessCells[i][j].getPieceOnSquare() != null
                     && chessCells[i][j].getPieceOnSquare().getColorOfPiece() ==
-                        ChessGamePiece.BLACK ){
+                    		PieceColorEnum.BLACK ){
                     blackPieces.add( chessCells[i][j].getPieceOnSquare() );
                 }
             }
@@ -161,16 +162,16 @@ public class ChessGameBoard extends JPanel{
                 ChessGamePiece pieceToAdd;
                 if ( i == 1 ) // black pawns
                 {
-                    pieceToAdd = new Pawn( this, i, j, ChessGamePiece.BLACK );
+                    pieceToAdd = new Pawn( this, i, j, PieceColorEnum.BLACK );
                 }
                 else if ( i == 6 ) // white pawns
                 {
-                    pieceToAdd = new Pawn( this, i, j, ChessGamePiece.WHITE );
+                    pieceToAdd = new Pawn( this, i, j, PieceColorEnum.WHITE );
                 }
                 else if ( i == 0 || i == 7 ) // main rows
                 {
-                    int colNum =
-                        i == 0 ? ChessGamePiece.BLACK : ChessGamePiece.WHITE;
+                	PieceColorEnum colNum =
+                        i == 0 ? PieceColorEnum.BLACK : PieceColorEnum.WHITE;
                     if ( j == 0 || j == 7 ){
                         pieceToAdd = new Rook( this, i, j, colNum );
                     }

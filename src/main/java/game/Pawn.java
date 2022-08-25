@@ -1,4 +1,17 @@
-import javax.swing.ImageIcon;
+package game;
+
+// -------------------------------------------------------------------------
+/**
+ * Represents a Pawn game piece. Unique in that it can move two locations on its
+ * first turn and therefore requires a new 'notMoved' variable to keep track of
+ * its turns.
+ *
+ * @author Ben Katz (bakatz)
+ * @author Myles David II (davidmm2)
+ * @author Danielle Bushrow (dbushrow)
+ * @version 2010.11.17
+ */
+
 import java.util.ArrayList;
 // -------------------------------------------------------------------------
 /**
@@ -27,7 +40,7 @@ public class Pawn
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public Pawn( ChessGameBoard board, int row, int col, int color ){
+    public Pawn( ChessGameBoard board, int row, int col, PieceColorEnum color ){
         super( board, row, col, color, true );
         notMoved = true;
         possibleMoves = calculatePossibleMoves( board );
@@ -48,8 +61,8 @@ public class Pawn
         if ( super.move( board, row, col ) ){
             notMoved = false;
             possibleMoves = calculatePossibleMoves( board );
-            if ( ( getColorOfPiece() == ChessGamePiece.BLACK && row == 7 )
-                || ( getColorOfPiece() == ChessGamePiece.WHITE && row == 0 ) ){ // pawn has reached the end of the board, promote it to queen
+            if ( ( getColorOfPiece() == PieceColorEnum.BLACK && row == 7 )
+                || ( getColorOfPiece() == PieceColorEnum.WHITE && row == 0 ) ){ // pawn has reached the end of the board, promote it to queen
                 board.getCell( row, col ).setPieceOnSquare( new Queen(
                     board,
                     row,
@@ -70,10 +83,10 @@ public class Pawn
      */
     @Override
     protected ArrayList<String> calculatePossibleMoves( ChessGameBoard board ){
-        ArrayList<String> moves = new ArrayList<String>();
+        ArrayList<String> moves = new ArrayList<>();
         if ( isPieceOnScreen() ){
             int currRow =
-                getColorOfPiece() == ChessGamePiece.WHITE
+                getColorOfPiece() == PieceColorEnum.WHITE
                     ? ( pieceRow - 1 )
                     : ( pieceRow + 1 );
             int count = 1;
@@ -91,13 +104,13 @@ public class Pawn
                     break;
                 }
                 currRow =
-                    ( getColorOfPiece() == ChessGamePiece.WHITE )
+                    ( getColorOfPiece() == PieceColorEnum.WHITE )
                         ? ( currRow - 1 )
                         : ( currRow + 1 );
                 count++;
             }
             // check for enemy capture points
-            if ( getColorOfPiece() == ChessGamePiece.WHITE ){
+            if ( getColorOfPiece() == PieceColorEnum.WHITE ){
                 if ( isEnemy( board, pieceRow - 1, pieceColumn - 1 ) ){
                     moves.add( ( pieceRow - 1 ) + "," + ( pieceColumn - 1 ) );
                 }
@@ -116,29 +129,5 @@ public class Pawn
             }
         }
         return moves;
-    }
-    /**
-     * Creates an icon for this piece depending on the piece's color.
-     *
-     * @return ImageIcon the ImageIcon representation of this piece.
-     */
-    @Override
-    public ImageIcon createImageByPieceType(){
-        if ( getColorOfPiece() == ChessGamePiece.WHITE ){
-            return new ImageIcon(
-                getClass().getResource("chessImages/WhitePawn.gif")
-            );            
-        }
-        else if ( getColorOfPiece() == ChessGamePiece.BLACK ){
-            return new ImageIcon(
-                getClass().getResource("chessImages/BlackPawn.gif")
-            );            
-        }
-        else
-        {
-            return new ImageIcon(
-                getClass().getResource("chessImages/default-Unassigned.gif")
-            );           
-        }
     }
 }

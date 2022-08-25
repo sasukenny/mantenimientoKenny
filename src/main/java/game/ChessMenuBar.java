@@ -1,3 +1,4 @@
+package game;
 import java.awt.Component;
 import java.awt.event.*;
 import javax.swing.*;
